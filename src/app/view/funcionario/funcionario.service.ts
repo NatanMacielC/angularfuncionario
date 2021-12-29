@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators'
-import { Clientes } from './nomes/clientes';
+import { Funcionario } from './funcionario';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClientesService {
+export class FuncionarioService {
 
-  contatosUrl = "/api/clientes";
+  contatosUrl = "http://localhost:8080/api/funcionario";
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<any>{
+  getFuncionarioList(): Observable<any>{
     return this.http.get<any[]>(`${this.contatosUrl}`)
   }
   
@@ -21,22 +21,22 @@ export class ClientesService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
-  saveClientes(clientes: any): Observable<any> {
-    return this.http.post<any>(this.contatosUrl, JSON.stringify(clientes), this.httpOptions)
+  saveFuncionario(funcionario: any): Observable<any> {
+    return this.http.post<any>(this.contatosUrl, JSON.stringify(funcionario), this.httpOptions)
       .pipe(
         retry(2),
       )
   }
 
-  updateClientes(clientes: any): Observable<any> {
-    return this.http.put<any>(this.contatosUrl + '/' + clientes.id, JSON.stringify(clientes), this.httpOptions)
+  updateFuncionario(funcionario: any): Observable<any> {
+    return this.http.put<any>(this.contatosUrl + '/' + funcionario.id, JSON.stringify(funcionario), this.httpOptions)
       .pipe(
         retry(1),
       )
   }
 
-  deleteClientes(clientes: any) {
-    return this.http.delete<any>(this.contatosUrl + '/' + clientes.id, this.httpOptions)
+  deleteFuncionario(funcionario: any) {
+    return this.http.delete<any>(this.contatosUrl + '/' + funcionario.id, this.httpOptions)
       .pipe(
         retry(1),
       )

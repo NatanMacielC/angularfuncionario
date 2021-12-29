@@ -1,0 +1,38 @@
+<div class="p-3 mb-2 bg-dark text-white" id="bg">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-5">
+
+      <div class="panel panel-primary">
+        <div class="panel-body">
+
+          <form autocomplete="off" [formGroup]="formFuncionario" (ngSubmit)="formFuncionario">
+            <div class="form-group" [ngClass]="{ 'has-error': isSubmitted && fc.nome.errors }">
+              <label for="exampleInputName1">Nome</label>
+              <input type="text" class="form-control" id="name" formControlName="nome" placeholder="Insira seu email">
+              <span *ngIf="isSubmitted && fc.nome.errors" class="help-block">Coloque o nome!</span>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': isSubmitted && fc.cpf.errors }">
+              <label for="exampleInputEmail1">CPF</label>
+              <input type="text" class="form-control" id="cpf" formControlName="cpf" placeholder="Insira seu CPF">
+              <span *ngIf="isSubmitted && fc.cpf.errors" class="help-block">Coloque o CPF!</span>
+              <small id="emailHelp" class="form-text text-muted">Nós nunca compartilharemos seu CPF com ninguém.</small>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': isSubmitted && fc.cafe.errors }">
+              <label for="exampleInputEmail1">Opção de café da manhã</label>
+              <input type="email" class="form-control" id="cafe" formControlName="cafe" placeholder="Insira seu email">
+              <span *ngIf="isSubmitted && fc.cafe.errors" class="help-block">Coloque a sua opção de café da
+                manhã!</span>
+            </div>
+
+            <button type="submit" class="btn btn-secondary" (click)="save()">Salvar</button>
+            <button type="button" class="btn btn-light" (click)="cleanForm()">Limpar</button>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
